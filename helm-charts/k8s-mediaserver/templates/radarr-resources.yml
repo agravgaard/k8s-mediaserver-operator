@@ -49,6 +49,8 @@ spec:
         {{- include "k8s-mediaserver.selectorLabels" . | nindent 8 }}
         app: radarr
     spec:
+      securityContext:
+        fsGroup: {{ .Values.general.pgid }}
       initContainers:
         - name: config-radarr
           image: docker.io/ubuntu:groovy

@@ -46,6 +46,8 @@ spec:
         {{- include "k8s-mediaserver.selectorLabels" . | nindent 8 }}
         app: jackett
     spec:
+      securityContext:
+        fsGroup: {{ .Values.general.pgid }}
       initContainers:
         - name: config-jackett
           image: docker.io/ubuntu:groovy

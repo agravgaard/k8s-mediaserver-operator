@@ -115,6 +115,8 @@ spec:
         {{- include "k8s-mediaserver.selectorLabels" . | nindent 8 }}
         app: transmission
     spec:
+      securityContext:
+        fsGroup: {{ .Values.general.pgid }}
       initContainers:
         - name: config-transmission
           image: docker.io/ubuntu:groovy

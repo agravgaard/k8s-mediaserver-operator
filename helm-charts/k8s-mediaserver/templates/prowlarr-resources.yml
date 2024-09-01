@@ -48,6 +48,8 @@ spec:
         {{- include "k8s-mediaserver.selectorLabels" . | nindent 8 }}
         app: prowlarr
     spec:
+      securityContext:
+        fsGroup: {{ .Values.general.pgid }}
       initContainers:
         - name: config-prowlarr
           image: docker.io/ubuntu:groovy

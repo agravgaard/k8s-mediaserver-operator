@@ -48,6 +48,8 @@ spec:
         {{- include "k8s-mediaserver.selectorLabels" . | nindent 8 }}
         app: sonarr
     spec:
+      securityContext:
+        fsGroup: {{ .Values.general.pgid }}
       initContainers:
         - name: config-sonarr
           image: docker.io/ubuntu:groovy

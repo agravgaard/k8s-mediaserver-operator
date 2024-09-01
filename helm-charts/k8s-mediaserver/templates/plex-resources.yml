@@ -30,6 +30,8 @@ spec:
         {{- include "k8s-mediaserver.selectorLabels" . | nindent 8 }}
         app: plex
     spec:
+      securityContext:
+        fsGroup: {{ .Values.general.pgid }}
       volumes:
         {{- if not .Values.general.storage.customVolume }}
         - name: mediaserver-volume
